@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -67,7 +69,10 @@ public class ControllerPrincipal {
 		else {
 
 			Partida partida = new Partida();
-
+			
+			System.out.println("Informe a data da partida: ");
+			String data = input.next();
+			
 			System.out.print("Informe o num. de gols do time da casa no HT: ");
 			int golsHtCasa = input.nextInt();
 
@@ -79,6 +84,9 @@ public class ControllerPrincipal {
 
 			System.out.print("Informe o num. de gols do time visitante no 2T: ");
 			int gols2TFora = input.nextInt();
+			
+			partida.setCasa(repositoryClubes.returnClubeByNome(nomeCasa));
+			partida.setFora(repositoryClubes.returnClubeByNome(nomeVisitante));
 
 			partida.setTotalGols(golsHtCasa, golsHTFora, gols2TCasa, gols2TFora);
 			partida.setGolsCasa(golsHtCasa, gols2TCasa);
@@ -93,9 +101,10 @@ public class ControllerPrincipal {
 			partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(nomeVisitante).getPercent15Fora());
 			partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(nomeCasa).getPercent25Casa());
 			partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(nomeVisitante).getPercent25Fora());
-
-			partida.setCasa(repositoryClubes.returnClubeByNome(nomeCasa));
-			partida.setFora(repositoryClubes.returnClubeByNome(nomeVisitante));
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate date = LocalDate.parse(data, formatter);
+			partida.setData(date);
 
 			repositoryClubes.returnClubeByNome(nomeCasa).setJogos();
 			repositoryClubes.returnClubeByNome(nomeVisitante).setJogos();

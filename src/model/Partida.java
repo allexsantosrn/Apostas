@@ -1,7 +1,10 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Partida {
 
+	LocalDate data;
 	Clube casa;
 	Clube fora;
 	int totalGols;
@@ -16,6 +19,14 @@ public class Partida {
 	String placarHT;
 	String placar2T;
 	String placarFT;
+	
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
 
 	public Clube getCasa() {
 		return casa;
