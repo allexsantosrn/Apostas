@@ -1,4 +1,4 @@
-package Repository;
+package repository;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,7 +12,7 @@ public class RepositoryClubes {
 	public void adicionarTime(Clube clube) {
 
 		if (clubes.contains(clube)) {
-			System.out.println("Clube j√° se encontra adicionado ao sistema!");
+			System.out.println("Clube j· se encontra adicionado ao sistema!");
 		}
 
 		else {
@@ -29,7 +29,7 @@ public class RepositoryClubes {
 
 				if (clube.getNome().equals(nome)) {
 					System.out.println("Consulta realizada com sucesso!");
-					System.out.println("Nome da Equipe: " + clube.getNome() + "-" + "Pa√≠s: "+clube.getPais());					
+					System.out.println("Nome da Equipe: " + clube.getNome() + "-" + "PaÌs: "+clube.getPais());					
 				}
 
 			}
@@ -37,7 +37,7 @@ public class RepositoryClubes {
 
 		else {
 
-			System.out.println("N√£o foram localizados clubes com o nome informado!");
+			System.out.println("N„o foram localizados clubes com o nome informado!");
 		}
 	}
 
@@ -72,4 +72,9 @@ public class RepositoryClubes {
 		
 	}
 
+	public Collection<Clube> getClubes() {
+		return clubes;
+	}
+
+	
 }

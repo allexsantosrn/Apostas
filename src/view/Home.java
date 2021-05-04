@@ -20,7 +20,9 @@ public class Home {
 			System.out.println("1-Cadastrar Time");
 			System.out.println("2-Consultar Time");
 			System.out.println("3-Cadastrar Partida");
-			System.out.print("Escolha uma op√ß√£o: ");
+			System.out.println("4-Importar Times");
+			System.out.println("5-Exportar Times");
+			System.out.print("Escolha uma opÁ„o: ");
 			option = input.nextInt();
 
 			switch (option) {
@@ -36,9 +38,17 @@ public class Home {
 			case 3:
 				controller.cadastrarPartidas();
 				break;
+				
+			case 4:
+				controller.importarClubes();
+				break;
+				
+			case 5:
+				controller.exportarClubes();
+				break;
 
 			default:
-				System.out.println("Op√ß√£o inv√°lida. Escolha uma op√ß√£o entre 0 e 10!!!");
+				System.out.println("OpÁ„o inv·lida. Escolha uma opÁ„o entre 0 e 10!!!");
 				break;
 			}
 

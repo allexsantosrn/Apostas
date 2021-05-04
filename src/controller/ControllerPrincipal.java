@@ -1,10 +1,17 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Scanner;
 
-import Repository.RepositoryClubes;
 import model.Clube;
 import model.Partida;
+import repository.RepositoryClubes;
 
 public class ControllerPrincipal {
 
@@ -15,7 +22,7 @@ public class ControllerPrincipal {
 
 		Clube clube = new Clube();
 
-		System.out.print("Informe o pa√≠s da equipe: ");
+		System.out.print("Informe o paÌs da equipe: ");
 		String pais = input.nextLine();
 		System.out.print("Informe o nome da equipe: ");
 		String nome = input.nextLine();
@@ -38,23 +45,23 @@ public class ControllerPrincipal {
 
 	public void cadastrarPartidas() {
 
-		System.out.print("Informe o nome da equipe que est√° jogando em casa: ");
+		System.out.print("Informe o nome da equipe que est· jogando em casa: ");
 		String nomeCasa = input.next();
 
 		System.out.print("Informe o nome de equipe visitante: ");
 		String nomeVisitante = input.next();
 
 		if (!repositoryClubes.hasTimeByNome(nomeCasa)) {
-			System.out.println("Equipe da casa n√£o localizada!");
+			System.out.println("Equipe da casa n„o localizada!");
 		}
 
 		else if (!repositoryClubes.hasTimeByNome(nomeVisitante)) {
-			System.out.println("Equipe visitante n√£o localizada!");
+			System.out.println("Equipe visitante n„o localizada!");
 		}
 
 		else if (nomeCasa.equals(nomeVisitante)) {
 
-			System.out.println("Os times s√£o iguais. Informe times diferentes!");
+			System.out.println("Os times s„o iguais. Informe times diferentes!");
 		}
 
 		else {
@@ -89,6 +96,7 @@ public class ControllerPrincipal {
 
 			partida.setCasa(repositoryClubes.returnClubeByNome(nomeCasa));
 			partida.setFora(repositoryClubes.returnClubeByNome(nomeVisitante));
+
 			repositoryClubes.returnClubeByNome(nomeCasa).setJogos();
 			repositoryClubes.returnClubeByNome(nomeVisitante).setJogos();
 			repositoryClubes.returnClubeByNome(nomeCasa).setGolsPTotal(golsHtCasa, gols2TCasa);
@@ -118,7 +126,7 @@ public class ControllerPrincipal {
 				repositoryClubes.returnClubeByNome(nomeCasa).setTotalGols25Casa();
 				repositoryClubes.returnClubeByNome(nomeVisitante).setTotalGols25Fora();
 			}
-			
+
 			repositoryClubes.returnClubeByNome(nomeCasa).adicionarPartida(partida);
 			repositoryClubes.returnClubeByNome(nomeVisitante).adicionarPartida(partida);
 
@@ -127,6 +135,73 @@ public class ControllerPrincipal {
 
 		}
 
+	}
+
+	public void importarClubes() {
+
+		String path = "c:\\Temp\\in2.txt";
+
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+
+			String line = br.readLine();
+			line = br.readLine();
+
+			while (line != null) {
+
+				Clube clube = new Clube();
+
+				String[] vect = line.split(",");
+				String pais = vect[0];
+				String nome = vect[1];
+
+				clube.setPais(pais);
+				clube.setNome(nome);
+
+				repositoryClubes.adicionarTime(clube);
+
+				line = br.readLine();
+			}
+
+		}
+
+		catch (IOException e) {
+			System.out.println("Erro: " + e.getMessage());
+			// e.printStackTrace();
+		}
+
+	}
+
+	public void exportarClubes() {
+
+		try {
+			File file = new File("c:\\Temp\\in2.txt");
+
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+
+			PrintWriter pw = new PrintWriter(file);
+			pw.print("PaÌs");
+			pw.print(",");
+			pw.println("Clube");			
+						
+			Collection<Clube> clubes = new HashSet<>();
+			
+			clubes = repositoryClubes.getClubes();
+			
+			for (Clube clube : clubes) {
+				
+				pw.print(clube.getPais());
+				pw.print(",");
+				pw.println(clube.getNome());				
+			}
+
+			pw.close();
+			System.out.println("Done");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
