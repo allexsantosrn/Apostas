@@ -22,6 +22,7 @@ public class Home {
 			System.out.println("3-Cadastrar Partida");
 			System.out.println("4-Importar Times");
 			System.out.println("5-Exportar Times");
+			System.out.println("6-Importar Partidas");
 			System.out.print("Escolha uma opção: ");
 			option = input.nextInt();
 
@@ -45,6 +46,10 @@ public class Home {
 				
 			case 5:
 				controller.exportarClubes();
+				break;
+				
+			case 6:
+				controller.importarPartidas();
 				break;
 
 			default:

@@ -7,15 +7,15 @@ public class Clube {
 
 	String nome;
 	String pais;
-	int jogos;
+	int jogos=0;
 	int golsPTotal;
 	int golsCTotal;
 	int totalGolsCasa;
 	int totalGolsFora;
-	int totalGols15Casa;
-	int totalGols15Fora;
-	int totalGols25Casa;
-	int totalGols25Fora;
+	int totalGols15Casa=0;
+	int totalGols15Fora=0;
+	int totalGols25Casa=0;
+	int totalGols25Fora=0;
 	double mediaMarcados;
 	double mediaSofridos;
 	double mediagolsCasa;
@@ -24,7 +24,7 @@ public class Clube {
 	double percent15Fora;
 	double percent25Casa;
 	double percent25Fora;
-	
+
 	Collection<Partida> partidas = new HashSet<>();
 
 	public String getNome() {
@@ -128,7 +128,7 @@ public class Clube {
 	}
 
 	public void setMediaSofridos() {
-		this.mediaSofridos =  (double) this.golsCTotal / (double) this.jogos;
+		this.mediaSofridos = (double) this.golsCTotal / (double) this.jogos;
 	}
 
 	public double getMediagolsCasa() {
@@ -136,7 +136,7 @@ public class Clube {
 	}
 
 	public void setMediagolsCasa() {
-		this.mediagolsCasa =  (double) this.totalGolsCasa / (double) this.jogos;
+		this.mediagolsCasa = (double) this.totalGolsCasa / (double) this.jogos;
 	}
 
 	public double getMediagolsFora() {
@@ -144,15 +144,15 @@ public class Clube {
 	}
 
 	public void setMediagolsFora() {
-		this.mediagolsFora =  (double) this.totalGolsFora / (double) this.jogos;
-	}	
+		this.mediagolsFora = (double) this.totalGolsFora / (double) this.jogos;
+	}
 
 	public double getPercent15Casa() {
 		return percent15Casa;
 	}
 
 	public void setPercent15Casa() {
-		this.percent15Casa =  (double) this.totalGols15Casa / (double) this.jogos;
+		this.percent15Casa = (double) this.totalGols15Casa / (double) this.jogos;
 	}
 
 	public double getPercent15Fora() {
@@ -175,12 +175,24 @@ public class Clube {
 		return percent25Fora;
 	}
 
-	public void setPercent25Fora(double percent25Fora) {
+	public void setPercent25Fora() {
 		this.percent25Fora = (double) this.totalGols25Fora / (double) this.jogos;
 	}
-	
+
 	public void adicionarPartida(Partida partida) {
 		partidas.add(partida);
+	}
+
+	@Override
+	public String toString() {
+		return "Clube [nome=" + nome + ", pais=" + pais + ", jogos=" + jogos + ", golsPTotal=" + golsPTotal
+				+ ", golsCTotal=" + golsCTotal + ", totalGolsCasa=" + totalGolsCasa + ", totalGolsFora=" + totalGolsFora
+				+ ", totalGols15Casa=" + totalGols15Casa + ", totalGols15Fora=" + totalGols15Fora + ", totalGols25Casa="
+				+ totalGols25Casa + ", totalGols25Fora=" + totalGols25Fora + ", mediaMarcados=" + mediaMarcados
+				+ ", mediaSofridos=" + mediaSofridos + ", mediagolsCasa=" + mediagolsCasa + ", mediagolsFora="
+				+ mediagolsFora + ", percent15Casa=" + percent15Casa + ", percent15Fora=" + percent15Fora
+				+ ", percent25Casa=" + percent25Casa + ", percent25Fora=" + percent25Fora + ", partidas=" + partidas
+				+ "]";
 	}
 
 	@Override

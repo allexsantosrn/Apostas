@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class Partida {
 
-	LocalDate data;
-	Clube casa;
-	Clube fora;
-	int totalGols;
-	int golsCasa;
-	int golsFora;
-	double mediagolsCasa;
+	LocalDate data; //Data da partida
+	Clube casa; //Time da casa
+	Clube fora; //Time visitante
+	int totalGols; //Total de gols da partida
+	int golsCasa; //Total de gols do time da casa
+	int golsFora; //Total de gols do time visitante
+	double mediagolsCasa; 
 	double mediagolsAway;
 	double percent15Casa;
 	double percent15Fora;

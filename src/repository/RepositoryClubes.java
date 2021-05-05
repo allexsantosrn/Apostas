@@ -29,7 +29,7 @@ public class RepositoryClubes {
 
 				if (clube.getNome().equals(nome)) {
 					System.out.println("Consulta realizada com sucesso!");
-					System.out.println("Nome da Equipe: " + clube.getNome() + "-" + "País: "+clube.getPais());					
+					System.out.println(clube);					
 				}
 
 			}
