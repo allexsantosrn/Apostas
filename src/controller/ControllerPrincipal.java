@@ -14,11 +14,13 @@ import java.util.Scanner;
 import model.Clube;
 import model.Partida;
 import repository.RepositoryClubes;
+import repository.RepositoryPartidas;
 
 public class ControllerPrincipal {
 
 	Scanner input = new Scanner(System.in);
 	RepositoryClubes repositoryClubes = new RepositoryClubes();
+	RepositoryPartidas repositoryPartidas = new RepositoryPartidas();
 
 	public void cadastrarTime() {
 
@@ -73,17 +75,20 @@ public class ControllerPrincipal {
 			System.out.println("Informe a data da partida: ");
 			String data = input.next();
 
+			System.out.print("Informe o num. de gols do time da casa no FT: ");
+			int golsFTCasa = input.nextInt();
+
+			System.out.print("Informe o num. de gols do time visitante no FT: ");
+			int golsFTFora = input.nextInt();
+
 			System.out.print("Informe o num. de gols do time da casa no HT: ");
 			int golsHtCasa = input.nextInt();
 
 			System.out.print("Informe o num. de gols do time visitante no HT: ");
 			int golsHTFora = input.nextInt();
 
-			System.out.print("Informe o num. de gols do time da casa no 2T: ");
-			int gols2TCasa = input.nextInt();
-
-			System.out.print("Informe o num. de gols do time visitante no 2T: ");
-			int gols2TFora = input.nextInt();
+			int gols2TCasa = golsFTCasa - golsHtCasa;
+			int gols2TFora = golsFTFora - golsHTFora;
 
 			// Setando a data da partida.
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -111,10 +116,10 @@ public class ControllerPrincipal {
 			partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(nomeVisitante).getMediagolsFora());
 
 			// Setando médias atuais de gols Casa, Fora, percentuais.
-			partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(nomeCasa).getPercent15Casa());
-			partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(nomeVisitante).getPercent15Fora());
-			partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(nomeCasa).getPercent25Casa());
-			partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(nomeVisitante).getPercent25Fora());
+			partida.setPercent15Casa(repositoryClubes.returnClubeByNome(nomeCasa).getPercent15Casa());
+			partida.setPercent15Fora(repositoryClubes.returnClubeByNome(nomeVisitante).getPercent15Fora());
+			partida.setPercent25Casa(repositoryClubes.returnClubeByNome(nomeCasa).getPercent25Casa());
+			partida.setPercent25Fora(repositoryClubes.returnClubeByNome(nomeVisitante).getPercent25Fora());
 
 			repositoryClubes.returnClubeByNome(nomeCasa).setJogos();
 			repositoryClubes.returnClubeByNome(nomeVisitante).setJogos();
@@ -153,6 +158,8 @@ public class ControllerPrincipal {
 
 			repositoryClubes.returnClubeByNome(nomeCasa).adicionarPartida(partida);
 			repositoryClubes.returnClubeByNome(nomeVisitante).adicionarPartida(partida);
+
+			repositoryPartidas.adicionarPartida(partida);
 		}
 
 	}
@@ -281,10 +288,10 @@ public class ControllerPrincipal {
 				partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(fora).getMediagolsFora());
 
 				// Setando médias atuais de gols Casa, Fora, percentuais.
-				partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(casa).getPercent15Casa());
-				partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(fora).getPercent15Fora());
-				partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(casa).getPercent25Casa());
-				partida.setMediagolsCasa(repositoryClubes.returnClubeByNome(fora).getPercent25Fora());
+				partida.setPercent15Casa(repositoryClubes.returnClubeByNome(casa).getPercent15Casa());
+				partida.setPercent15Fora(repositoryClubes.returnClubeByNome(fora).getPercent15Fora());
+				partida.setPercent25Casa(repositoryClubes.returnClubeByNome(casa).getPercent25Casa());
+				partida.setPercent25Fora(repositoryClubes.returnClubeByNome(fora).getPercent25Fora());
 
 				repositoryClubes.returnClubeByNome(casa).setJogos();
 				repositoryClubes.returnClubeByNome(fora).setJogos();
@@ -324,6 +331,8 @@ public class ControllerPrincipal {
 				repositoryClubes.returnClubeByNome(casa).adicionarPartida(partida);
 				repositoryClubes.returnClubeByNome(fora).adicionarPartida(partida);
 
+				repositoryPartidas.adicionarPartida(partida);
+
 				line = br.readLine();
 			}
 
@@ -332,6 +341,67 @@ public class ControllerPrincipal {
 		catch (IOException e) {
 			System.out.println("Erro: " + e.getMessage());
 			// e.printStackTrace();
+		}
+
+	}
+
+	public void exportarPartidas() {
+
+		try {
+			File file = new File("c:\\Temp\\partidasout.txt");
+
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+
+			PrintWriter pw = new PrintWriter(file);
+			pw.print("Data");
+			pw.print(",");
+			pw.print("Casa");
+			pw.print(",");
+			pw.print("Visitante");
+			pw.print(",");
+			pw.print("GolsFTCasa");
+			pw.print(",");
+			pw.print("GolsFTFora");
+			pw.print(",");
+			pw.print("PlacarHT");
+			pw.print(",");
+			pw.print("PlacarFT");
+			pw.print(",");
+			pw.print("Percent1,5Casa");
+			pw.print(",");
+			pw.println("Percent1,5Fora");
+
+			Collection<Partida> partidas = new HashSet<>();
+
+			partidas = repositoryPartidas.getPartidas();
+
+			for (Partida partida : partidas) {
+
+				pw.print(partida.getData());
+				pw.print(",");
+				pw.print(partida.getCasa().getNome());
+				pw.print(",");
+				pw.print(partida.getFora().getNome());
+				pw.print(",");
+				pw.print(partida.getGolsCasa());
+				pw.print(",");
+				pw.print(partida.getGolsFora());
+				pw.print(",");
+				pw.print(partida.getPlacarFT());
+				pw.print(",");
+				pw.print(partida.getPlacarHT());
+				pw.print(",");
+				pw.println(partida.getPercent15Fora());
+
+			}
+
+			pw.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

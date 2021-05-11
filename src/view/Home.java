@@ -23,6 +23,7 @@ public class Home {
 			System.out.println("4-Importar Times");
 			System.out.println("5-Exportar Times");
 			System.out.println("6-Importar Partidas");
+			System.out.println("7-Exportar Partidas");
 			System.out.print("Escolha uma opção: ");
 			option = input.nextInt();
 
@@ -51,7 +52,11 @@ public class Home {
 			case 6:
 				controller.importarPartidas();
 				break;
-
+				
+			case 7:
+				controller.exportarPartidas();
+				break;
+				
 			default:
 				System.out.println("Opção inválida. Escolha uma opção entre 0 e 10!!!");
 				break;

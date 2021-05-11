@@ -29,7 +29,8 @@ public class RepositoryClubes {
 
 				if (clube.getNome().equals(nome)) {
 					System.out.println("Consulta realizada com sucesso!");
-					System.out.println(clube);					
+					System.out.println(clube);	
+					
 				}
 
 			}

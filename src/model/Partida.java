@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class Partida {
 
-	LocalDate data; //Data da partida
-	Clube casa; //Time da casa
-	Clube fora; //Time visitante
-	int totalGols; //Total de gols da partida
-	int golsCasa; //Total de gols do time da casa
-	int golsFora; //Total de gols do time visitante
-	double mediagolsCasa; 
+	LocalDate data; // Data da partida
+	Clube casa; // Time da casa
+	Clube fora; // Time visitante
+	int totalGols; // Total de gols da partida
+	int golsCasa; // Total de gols do time da casa
+	int golsFora; // Total de gols do time visitante
+	double mediagolsCasa;
 	double mediagolsAway;
 	double percent15Casa;
 	double percent15Fora;
@@ -19,7 +19,7 @@ public class Partida {
 	String placarHT;
 	String placar2T;
 	String placarFT;
-	
+
 	public LocalDate getData() {
 		return data;
 	}
@@ -42,7 +42,7 @@ public class Partida {
 
 	public void setFora(Clube fora) {
 		this.fora = fora;
-	}	
+	}
 
 	public int getTotalGols() {
 		return totalGols;
@@ -51,13 +51,13 @@ public class Partida {
 	public void setTotalGols(int golsHtCasa, int golsHTFora, int gols2TCasa, int gols2TFora) {
 		this.totalGols = golsHtCasa + golsHtCasa + gols2TCasa + gols2TFora;
 	}
-	
+
 	public int getGolsCasa() {
 		return golsCasa;
 	}
 
 	public void setGolsCasa(int golsHtCasa, int gols2TCasa) {
-		this.golsCasa = golsHtCasa+gols2TCasa;
+		this.golsCasa = golsHtCasa + gols2TCasa;
 	}
 
 	public int getGolsFora() {
@@ -65,8 +65,8 @@ public class Partida {
 	}
 
 	public void setGolsFora(int golsHTFora, int gols2TFora) {
-		this.golsFora = golsHTFora+gols2TFora;
-	}	
+		this.golsFora = golsHTFora + gols2TFora;
+	}
 
 	public double getMediagolsCasa() {
 		return mediagolsCasa;
@@ -146,5 +146,13 @@ public class Partida {
 		this.placarFT = ftCasa + "-" + ftFora;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Partida [data=" + data + ", casa=" + casa + ", fora=" + fora + ", totalGols=" + totalGols
+				+ ", golsCasa=" + golsCasa + ", golsFora=" + golsFora + ", mediagolsCasa=" + mediagolsCasa
+				+ ", mediagolsAway=" + mediagolsAway + ", percent15Casa=" + percent15Casa + ", percent15Fora="
+				+ percent15Fora + ", percent25Casa=" + percent25Casa + ", percent25Fora=" + percent25Fora
+				+ ", placarHT=" + placarHT + ", placar2T=" + placar2T + ", placarFT=" + placarFT + "]";
+	}
+
 }
