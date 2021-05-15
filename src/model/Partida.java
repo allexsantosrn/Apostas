@@ -12,6 +12,10 @@ public class Partida {
 	int golsFora; // Total de gols do time visitante
 	double mediagolsCasa;
 	double mediagolsAway;
+	double mediaGolsPCasa;
+	double mediaGolsCCasa;
+	double mediaGolsPFora;
+	double mediaGolsCFora;
 	double percent15Casa;
 	double percent15Fora;
 	double percent25Casa;
@@ -146,13 +150,47 @@ public class Partida {
 		this.placarFT = ftCasa + "-" + ftFora;
 	}
 
+	public double getMediaTotalGolsPCasa() {
+		return mediaGolsPCasa;
+	}
+
+	public void setMediaTotalGolsPCasa(double golsFTCasa) {
+		this.mediaGolsPCasa = golsFTCasa;
+	}
+
+	public double getMediaTotalGolsCCasa() {
+		return mediaGolsCCasa;
+	}
+
+	public void setMediaTotalGolsCCasa(double golsFTFora) {
+		this.mediaGolsCCasa = golsFTFora;
+	}
+
+	public double getMediaTotalGolsPFora() {
+		return mediaGolsCCasa;
+	}
+
+	public void setMediaTotalGolsPFora(double golsFTFora) {
+		this.mediaGolsCCasa = golsFTFora;
+	}
+
+	public double getMediaTotalGolsCFora() {
+		return mediaGolsCFora;
+	}
+
+	public void setMediaTotalGolsCFora(double golsFTCasa) {
+		this.mediaGolsCFora = golsFTCasa;
+	}
+
 	@Override
 	public String toString() {
 		return "Partida [data=" + data + ", casa=" + casa + ", fora=" + fora + ", totalGols=" + totalGols
 				+ ", golsCasa=" + golsCasa + ", golsFora=" + golsFora + ", mediagolsCasa=" + mediagolsCasa
-				+ ", mediagolsAway=" + mediagolsAway + ", percent15Casa=" + percent15Casa + ", percent15Fora="
-				+ percent15Fora + ", percent25Casa=" + percent25Casa + ", percent25Fora=" + percent25Fora
-				+ ", placarHT=" + placarHT + ", placar2T=" + placar2T + ", placarFT=" + placarFT + "]";
+				+ ", mediagolsAway=" + mediagolsAway + ", mediaGolsPCasa=" + mediaGolsPCasa + ", mediaGolsCCasa="
+				+ mediaGolsCCasa + ", mediaGolsPFora=" + mediaGolsPFora + ", mediaGolsCFora=" + mediaGolsCFora
+				+ ", percent15Casa=" + percent15Casa + ", percent15Fora=" + percent15Fora + ", percent25Casa="
+				+ percent25Casa + ", percent25Fora=" + percent25Fora + ", placarHT=" + placarHT + ", placar2T="
+				+ placar2T + ", placarFT=" + placarFT + "]";
 	}
 
 }

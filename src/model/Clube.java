@@ -7,15 +7,15 @@ public class Clube {
 
 	String nome;
 	String pais;
-	int jogos=0;
+	int jogos = 0;
 	int golsPTotal;
 	int golsCTotal;
 	int totalGolsCasa;
 	int totalGolsFora;
-	int totalGols15Casa=0;
-	int totalGols15Fora=0;
-	int totalGols25Casa=0;
-	int totalGols25Fora=0;
+	int totalGols15Casa;
+	int totalGols15Fora;
+	int totalGols25Casa;
+	int totalGols25Fora;
 	double mediaMarcados;
 	double mediaSofridos;
 	double mediagolsCasa;
