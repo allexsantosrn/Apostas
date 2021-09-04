@@ -72,7 +72,7 @@ public class ControllerPrincipal {
 
 			Partida partida = new Partida();
 
-			System.out.println("Informe a data da partida: ");
+			System.out.print("Informe a data da partida: ");
 			String data = input.next();
 
 			System.out.print("Informe o num. de gols do time da casa no FT: ");

@@ -152,7 +152,7 @@ public class Clube {
 	}
 
 	public void setPercent15Casa() {
-		this.percent15Casa = (double) this.totalGols15Casa / (double) this.jogos;
+		this.percent15Casa = ((double) this.totalGols15Casa / (double) this.jogos)*100;
 	}
 
 	public double getPercent15Fora() {
@@ -160,7 +160,7 @@ public class Clube {
 	}
 
 	public void setPercent15Fora() {
-		this.percent15Fora = (double) this.totalGols15Fora / (double) this.jogos;
+		this.percent15Fora = ((double) this.totalGols15Fora / (double) this.jogos)*100;
 	}
 
 	public double getPercent25Casa() {
@@ -168,7 +168,7 @@ public class Clube {
 	}
 
 	public void setPercent25Casa() {
-		this.percent25Casa = (double) this.totalGols25Casa / (double) this.jogos;
+		this.percent25Casa = ((double) this.totalGols25Casa / (double) this.jogos)*100;
 	}
 
 	public double getPercent25Fora() {
@@ -176,7 +176,7 @@ public class Clube {
 	}
 
 	public void setPercent25Fora() {
-		this.percent25Fora = (double) this.totalGols25Fora / (double) this.jogos;
+		this.percent25Fora = ((double) this.totalGols25Fora / (double) this.jogos)*100;
 	}
 
 	public void adicionarPartida(Partida partida) {
@@ -191,8 +191,7 @@ public class Clube {
 				+ totalGols25Casa + ", totalGols25Fora=" + totalGols25Fora + ", mediaMarcados=" + mediaMarcados
 				+ ", mediaSofridos=" + mediaSofridos + ", mediagolsCasa=" + mediagolsCasa + ", mediagolsFora="
 				+ mediagolsFora + ", percent15Casa=" + percent15Casa + ", percent15Fora=" + percent15Fora
-				+ ", percent25Casa=" + percent25Casa + ", percent25Fora=" + percent25Fora + ", partidas=" + partidas
-				+ "]";
+				+ ", percent25Casa=" + percent25Casa + ", percent25Fora=" + percent25Fora + "]";
 	}
 
 	@Override
